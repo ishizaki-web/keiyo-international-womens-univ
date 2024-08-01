@@ -1,0 +1,237 @@
+@charset "utf-8";
+/* === reset === */
+* {
+  margin: 0;
+  padding: 0;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+ol,
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+html{
+  -webkit-text-size-adjust: 100%;
+}
+button, input, select, textarea{
+  font-family : inherit;
+}
+/* === layout === */
+/* base */
+html {
+  font-size: 62.5%;
+  -webkit-text-size-adjust: 100%;
+}
+   
+body {
+  position: relative;
+  font-family: 'Shippori Mincho', serif;
+  -webkit-font-feature-settings: "palt" 1;
+          font-feature-settings: "palt" 1;
+  letter-spacing: .2em;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #23234B;
+  line-height: 1.8;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-weight: normal;
+}
+a{
+  -webkit-transition: .5s;
+  transition: .5s;
+  color: #23234B;
+  background-color: transparent;
+}
+a:hover {
+  opacity: 0.7;
+}
+*,*:before,*:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+*:focus {
+  outline: none;
+}
+@media screen and (max-width: 768px) {
+  body {
+    padding-top: 50px;
+  }
+  a:hover {
+    opacity: 1;
+  }
+}
+/* common */
+.br_sp {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .br_sp {
+    display: block;
+  }
+  .br_pc {
+    display: none;
+  }
+}
+.common_button {
+  position: relative;
+  display: block;
+  width: 300px;
+  padding: 1em 0;
+  margin: 0 auto;
+  font-size: 2rem;
+  border: 1px solid #23234B;
+  -webkit-transition: .5s;
+  transition: .5s;
+  text-align: center;
+  font-family: 'Crimson Pro', serif;
+  font-weight: lighter;
+}
+.common_button::after {
+  background-color: #23234B;
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 10;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  -webkit-transition-delay: 0.1s;
+          transition-delay: 0.1s;
+  top: 6px;
+  right: -6px;
+  height: 100%;
+  width: 1px;
+}
+.common_button::before {
+  background-color: #23234B;
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 10;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+  bottom: -6px;
+  height: 1px;
+  right: -6px;
+  width: 100%;
+}
+.common_button:hover::before {
+  width: 0;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+}
+.common_button:hover::after {
+  height: 0;
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
+}
+@media screen and (max-width: 768px) {
+  .common_button {
+    width: 80%;
+    padding: .7em 0;
+  }
+}
+
+/* part */
+article,aside,footer,header,nav,section {
+  display: block;
+}
+h1 {
+  font-size: 2em;
+  margin: .67em 0;
+}
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  -webkit-text-decoration:underline dotted;
+          text-decoration:underline dotted;
+}
+b,strong {
+  font-weight: inherit;
+  font-weight: bolder;
+}
+small {
+  font-size: 80%;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+button,input,optgroup,select,textarea {
+  font-family: sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+button,input {
+  overflow: visible;
+}
+button,select {
+  text-transform: none;
+}
+button,
+html [type="button"],
+[type="reset"],
+[type="submit"] {
+  --webkit-appearance: button;
+}
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+textarea {
+  overflow: auto;
+}
+[type="checkbox"],
+[type="radio"] {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 0;
+}
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+[type="search"] {
+  --webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+[hidden] {
+  display: none;
+}
+.rb {
+  font-size: 1.6em;
+}

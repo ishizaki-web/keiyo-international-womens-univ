@@ -1,0 +1,470 @@
+@charset "utf-8";
+
+/* Loading背景画面設定 */
+#splash {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999;
+  background:#23234B;
+  text-align:center;
+  color:#FFF;
+}
+
+/* Loading画像中央配置　*/
+#splash-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Loading アイコンの大きさ設定　*/
+#splash-logo img {
+  width: 260px;
+}
+
+/* fadeUpをするアイコンの動き */
+.fadeUp{
+animation-name: fadeUpAnime;
+animation-duration:0.5s;
+animation-fill-mode:forwards;
+opacity: 0;
+}
+
+@keyframes fadeUpAnime{
+  from {
+    opacity: 0;
+  transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+  transform: translateY(0);
+  }
+}
+
+/*========= 画面遷移のためのCSS ===============*/
+
+body{
+  background:#23234B;/*遷移アニメーションと同じ色を指定*/
+}
+
+body.appear{
+  background:#FFF;/*画面を開いた後の背景色を指定*/
+}
+
+/*画面遷移アニメーション*/
+.splashbg1,
+.splashbg2{
+  display: none;
+}
+
+/*bodyにappearクラスがついたら出現*/
+body.appear .splashbg1,
+body.appear .splashbg2{
+  display:block;
+}
+
+/*右に消えるエリア*/
+body.appear .splashbg1{
+  animation-name:PageAnime;
+  animation-duration:1.2s;
+  animation-timing-function:ease-in-out;
+  animation-fill-mode:forwards;
+  content: "";
+  position:fixed;
+  z-index: 999;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left:50%;
+  transform: scaleX(1);
+  background-color: #23234B;/*伸びる背景色の設定*/
+}
+
+@keyframes PageAnime{
+0% {
+  transform-origin:left;
+  transform:scaleX(1);
+}
+50% {
+  transform-origin:right;
+}
+100% {
+  transform-origin:right;
+  transform:scaleX(0);
+}
+}
+
+/*左に消えるエリア*/
+body.appear .splashbg2{
+  animation-name:PageAnime2;
+  animation-duration:1.2s;
+  animation-timing-function:ease-in-out;
+  animation-fill-mode:forwards;
+  content: "";
+  position:fixed;
+  z-index: 999;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  right:50%;
+  transform: scaleX(1);
+  background-color: #23234B;/*伸びる背景色の設定*/
+}
+
+@keyframes PageAnime2{
+0% {
+  transform-origin:right;
+  transform:scaleX(1);
+}
+
+50% {
+  transform-origin:left;
+}
+100% {
+  transform-origin:left;
+  transform:scaleX(0);
+}
+}
+
+/*画面遷移の後現れるコンテンツ設定*/
+#wrapper{
+opacity: 0;/*はじめは透過0に*/
+}
+
+/*bodyにappearクラスがついたら出現*/
+body.appear #wrapper{
+animation-name:PageAnimeAppear;
+animation-duration:1s;
+animation-delay:0.2s;
+animation-fill-mode:forwards;
+opacity: 0;
+}
+
+@keyframes PageAnimeAppear{
+0% {
+opacity: 0;
+}
+100% {
+opacity: 1;
+}
+}
+
+/*  スライダーのためのcss  */
+.slider {/*横幅94%で左右に余白を持たせて中央寄せ*/
+  width:80%;
+   margin:0 auto;
+}
+/*slickのJSで書かれるタグ内、スライド左右の余白調整*/
+.slider .slick-slide {
+   margin:0 10px;
+}
+
+/* 矢印の設定 */
+/*戻る、次へ矢印の位置*/
+.slick-prev, 
+.slick-next {
+   position: absolute;/*絶対配置にする*/
+   top: 42%;
+   cursor: pointer;/*マウスカーソルを指マークに*/
+   outline: none;/*クリックをしたら出てくる枠線を消す*/
+   border-top: 1px solid #23234B;/*矢印の色*/
+   border-right: 1px solid #23234B;/*矢印の色*/
+   height: 15px;
+   width: 15px;
+}
+.slick-prev {/*戻る矢印の位置と形状*/
+   left: -1.5%;
+   transform: rotate(-135deg);
+}
+.slick-next {/*次へ矢印の位置と形状*/
+  right: -1.5%;
+  transform: rotate(45deg);
+}
+
+/*ドットナビゲーションの設定*/
+.slick-dots {
+  text-align:center;
+  margin:20px 0 0 0;
+}
+.slick-dots li {
+  display:inline-block;
+  margin:0 5px;
+}
+.slick-dots button {
+  color: transparent;
+  outline: none;
+  width:8px;/*ドットボタンのサイズ*/
+  height:8px;/*ドットボタンのサイズ*/
+  display:block;
+  border-radius:50%;
+  background:#ccc;/*ドットボタンの色*/
+}
+.slick-dots .slick-active button{
+  background:#333;/*ドットボタンの現在地表示の色*/
+} 
+
+/*========= ナビゲーションのためのCSS ===============*/
+/* ぼかしのためのCSS */
+.mainblur {
+  filter: blur(8px);
+}
+/*position:fixed;にし、z-indexの数値を小さくして最背面へ*/
+#g-nav{
+  position:fixed;
+  z-index: -1;
+  opacity: 0;/*はじめは透過0*/
+  top:0;
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  background:rgba(255,255,255,0.3);
+  transition: all 0.3s;/*動き*/
+}
+/*アクティブクラスがついたら透過なしにして最前面へ*/
+#g-nav.panelactive{
+  opacity: 1;
+  z-index:999;
+}
+/*ナビゲーションの縦スクロール*/
+#g-nav.panelactive #g-nav-list{
+  /*ナビの数が増えた場合縦スクロール*/
+  position: fixed;
+  z-index: 999; 
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+/*ナビゲーション*/
+#g-nav ul {
+  display: none;
+  /*ナビゲーション天地中央揃え*/
+  position: absolute;
+  z-index: 999;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+}
+#g-nav.panelactive ul {
+  display: block;
+}
+/*リストのレイアウト設定*/
+#g-nav li{
+  text-align: center; 
+  color: #23234B;
+}
+#g-nav li a{
+  font-family: "Crimson Pro", serif;
+  color: #23234B;
+  padding:10px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: normal;
+  font-size: 2.4rem;
+}
+/*========= ボタンのためのCSS ===============*/
+.openbtn1 {
+  position:fixed;
+  z-index: 9999;/*ボタンを最前面に*/
+  top:10px;
+  right: 10px;
+  cursor: pointer;
+  width: 50px;
+  height:50px;
+}
+	
+/*×に変化*/	
+.openbtn1 span{
+  display: inline-block;
+  transition: all .4s;
+  position: absolute;
+  left: 10%;
+  height: 1px;
+  background-color: #23234B;
+  }
+
+.openbtn1 span:nth-of-type(1) {
+	top:15px;	
+  width: 55%;
+}
+
+.openbtn1 span:nth-of-type(2) {
+	top:23px;
+  width: 45%;
+}
+
+.openbtn1 span:nth-of-type(3) {
+	top:31px;
+  width: 30%;
+}
+
+.openbtn1.active span:nth-of-type(1) {
+  top: 18px;
+  left: 18px;
+  transform: translateY(6px) rotate(-45deg);
+  width: 30%;
+}
+
+.openbtn1.active span:nth-of-type(2) {
+	opacity: 0;
+}
+
+.openbtn1.active span:nth-of-type(3){
+  top: 30px;
+  left: 18px;
+  transform: translateY(-6px) rotate(45deg);
+  width: 30%;
+}
+
+/* .scrolldown2 */
+.scrolldown2{
+  /*描画位置※位置は適宜調整してください*/
+  position:absolute;
+  z-index: 3;
+  bottom:10px;
+  left:50%;
+}
+/*Scrollテキストの描写*/
+.scrolldown2 span{
+  /*描画位置*/
+  position: absolute;
+  left:10px;
+  bottom:10px;
+  /*テキストの形状*/
+  color: #23234B;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  /*縦書き設定*/
+  -ms-writing-mode: tb-rl;
+  -webkit-writing-mode: vertical-rl;
+  writing-mode: vertical-rl;
+}
+/***追従するトップへ戻るボタン***/
+#pagetop {
+  position: fixed;
+  right: 5px;
+  bottom: 20px;
+  height: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transform: rotate(90deg);
+  font-size: 90%;
+  line-height: 1.5rem;
+  color: #23234B;
+  padding: 0 0 0 35px;
+  border-top: solid 1px;
+  writing-mode: horizontal-tb;
+}
+#pagetop::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -1px;
+  left: 0px;
+  width: 15px;
+  border-top: solid 1px;
+  transform: rotate(35deg);
+  transform-origin: left top;
+}
+/***トップへ戻るボタンここまで***/
+
+/* 丸の描写 */
+.scrolldown2:before {
+  content: "";
+  /*描画位置*/
+  position: absolute;
+  bottom:0;
+  left:-4px;
+  /*丸の形状*/
+  width:10px;
+  height:10px;
+  border-radius: 50%;
+  background:#23234B;
+  /*丸の動き1.6秒かけて透過し、永遠にループ*/
+animation:
+  circlemove 1.6s ease-in-out infinite,
+  cirlemovehide 1.6s ease-out infinite;
+}
+
+/*下からの距離が変化して丸の全体が上から下に動く*/
+@keyframes circlemove{
+  0%{bottom:45px;}
+  100%{bottom:-5px;}
+}
+
+/*上から下にかけて丸が透過→不透明→透過する*/
+@keyframes cirlemovehide{
+  0%{opacity:0}
+  50%{opacity:1;}
+  80%{opacity:0.9;}
+  100%{opacity:0;}
+}
+
+/* 線の描写 */
+.scrolldown2:after{
+content:"";
+  /*描画位置*/
+position: absolute;
+bottom:0;
+left:0;
+  /*線の形状*/
+width:2px;
+height: 50px;
+background:#23234B;
+}
+
+/* パーツの動き */
+.fadeInTrigger {
+  opacity: 0;
+}
+
+/* スクロールするとヘッダー背景画像が拡大（エリアの動き） */
+#header{
+  position: relative;/*背景を設定するdivの基点とするためrelativeをかける*/
+  width: 100%;
+  height:100vh;
+  overflow: hidden;
+}
+
+#header-img{
+	position: fixed;/*背景を固定するためfixedをかける*/
+	z-index: 1;/*#container,#footerよりも下に配置するために数値を小さくする*/
+  top: 0;/*topの位置がJSで変化*/
+	/*以下画面で背景画像を表示させるための指定*/
+  width: 100%;
+	height:100vh;
+	background: url("../images/mainVisual.jpg") no-repeat top center;/*背景画像の設定*/
+	background-size:cover;
+	transform-origin:center;/*変化する基点を中心からに設定*/
+}
+#header h1{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;/*#header-imgよりも手前に配置*/
+}
+#header p{
+	position: fixed;
+	top: 5%;
+	left: 20%;
+	transform: translate(-50%, -50%);
+	z-index: 2;/*#header-imgよりも手前に配置*/
+}
+
+.contents,#footer{
+	position: relative;/*#header-imgよりも配置を上にするためにrelativeをつける*/
+	z-index: 3;/*#header-imgよりもz-indexの値を大きな数値にして上に表示*/
+    background-color:#FFF;
+}
+
+@media screen and (max-width: 640px) {
+  #header p{
+	  left: 40%;
+  }
+}

@@ -1,0 +1,370 @@
+@charset 'UTF-8';
+
+/*
+GENERAL STYLING
+================================================ */
+html {
+    font-size: 100%;
+}
+body {
+	color: #23234B;
+	font-family: 'Shippori Mincho', serif;
+}
+
+/*
+COMMON
+================================================ */
+p,
+td {
+    line-height: 1.7;
+}
+
+/* Layout */
+.wrapper {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+main {
+    max-width: 900px;
+    width: 94%;
+    margin: 6.25rem auto;
+    padding: 3rem 2rem;
+    background: #fff;
+    box-shadow: 0 0 6px rgba(0,0,0,.2);
+}
+.text-center {
+    text-align: center;
+}
+.title text-center {
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Button */
+.btn {
+    font-family: 'Shippori Mincho', serif;
+    display: inline-block;
+    padding: 1.25rem 3.25rem;
+    font-size: 1.375rem;
+    text-align: center;
+    width: 100%;
+}
+.btn-primary {
+    color: #fff;
+    background: #23234B;
+    border-radius: 5px;
+}
+.btn-primary:hover {
+    background: #23234B;
+    opacity: 0.7;
+}
+
+
+/* Heading */
+.title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin: 1rem 0 2rem;
+}
+
+.title-center {
+    text-align: center;
+}
+.title-center::after {
+    margin: 2.5rem auto;
+}
+
+/* Table */
+table {
+    margin: 3.5rem 0;
+    width: 100%;
+}
+th,
+td {
+    display: block;
+}
+th {
+    font-weight: normal;
+    background: #c4c4c4;
+    vertical-align: middle;
+    padding: 1rem;
+}
+td {
+    padding: .75rem 1rem 1.75rem;
+}
+
+/*
+HEADER
+================================================ */
+.title h1 {
+    /* padding-bottom: .2em; */
+   
+    font-size: 4rem;
+    font-family: 'Crimson Pro', serif;
+    font-style: italic;
+    font-weight: lighter;
+    text-align: center;
+  }
+
+.title .rb {
+    padding-top: 10px;
+    font-size: 1.7rem;
+    text-align: center;
+  }
+
+/*
+FORM.html
+================================================ */
+.page-form {
+    background-image: url('../images/request_bg.jpg'), linear-gradient(180deg, transparent 0%,transparent 50%, #c4c4c4 50%, #c4c4c4 100%);
+    background-position: right 210px, 0 0;
+    background-size: 50vw auto, contain;
+    background-repeat: no-repeat;
+}
+.text-medium {
+    font-size: .875rem;
+    text-align: center;
+}
+
+/* Form */
+input[type='text'],
+input[type='email'],
+input[type='url'],
+select,
+textarea {
+    border: 1px solid #bbb;
+    background: #fff;
+    padding: .5rem;
+    width: 100%;
+}
+input[type='text']::placeholder,
+input[type='email']::placeholder,
+input[type='url']::placeholder,
+textarea::placeholder {
+    color: #bbb;
+}
+
+textarea {
+    height: 10rem;
+}
+
+.select-box {
+    position: relative;
+}
+.select-box::after {
+    display: inline-block;
+    position: absolute;
+    top: .625rem;
+    right: 1rem;
+/* Font Awesome */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    content: '\f078';
+    color: #bbb;
+}
+
+/* デフォルトのチェックボックスを非表示 */
+input[type='checkbox'] {
+    opacity:0;
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+}
+
+/* チェックボックス用の四角形を作る */
+input[type='checkbox'] + span::before {
+    display: inline-block;
+    content: '';
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid #bbb;
+    background: #fff;
+    margin: -.125rem .5rem 0 0;
+    vertical-align: middle;
+
+/* Font Awesome */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    padding: 0 2px;
+    line-height: 1.5;
+}
+/* チェックが入るとチェックアイコンを表示 */
+input[type='checkbox']:checked + span::before {
+    content: '\f00c';
+}
+
+#message {
+    font-size: 16px;
+    color: #ff0000;
+}
+/*
+FOOTER
+================================================ */
+footer {
+    background: #23234B;
+    color: rgba(255,255,255,.8);
+    padding: 3.5rem 1rem;
+    text-align: center;
+}
+
+p.copyright {
+    font-size: 1.5rem;
+}
+
+/*
+DESKTOP SIZE
+================================================ */
+@media (min-width: 600px) {
+/* Common */
+    main {
+        padding: 5rem;
+    }
+    .btn {
+        width: auto;
+    }
+    .title {
+        font-size: 1.875rem;
+    }
+
+/* Table */
+    tr:nth-child(odd) {
+        background: #c4c4c4;
+    }
+    tr:nth-child(even) th {
+        background: #fff;
+    }
+
+    th,
+    td {
+        padding: 1.25rem;
+        display: table-cell;
+    }
+    th {
+        width: 24%;
+        vertical-align: middle;
+    }
+    td {
+        width: 76%;
+    }
+
+/* Header */
+    header .wrapper {
+        padding: 2rem 1rem;
+    }
+    .logo {
+        width: 12.5rem;
+    }
+    .main-nav li {
+        margin-left: 2rem;
+        font-family: 'Noto sans serif', sans-serif;
+        font-size: 1.25rem;
+    }
+    .main-nav a {
+        width: auto;
+    }
+    .main-nav a:hover,
+    .main-nav .current {
+        border-bottom: 2px solid #23234B;
+        padding-bottom: .5rem;
+        background: none;
+    }
+    .main-nav a::before {
+        content: '';
+    }
+
+/* Home */
+    .home-hero {
+        padding: 16vw 1rem;
+    }
+    .home-hero h2 {
+        font-size: 2.5rem;
+        margin: 0 0 2rem;
+        background: none;
+        padding: 0;
+    }
+    .home-hero p {
+        width: 38vw;
+    }
+
+    /* Contents */
+    .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4rem 1rem;
+    }
+    .flex-reverse {
+        flex-direction: row-reverse;
+    }
+    .home-text {
+        width: 50vw;
+        margin-bottom: 0;
+    }
+    .home-chart {
+        width: 34vw;
+    }
+
+/* Timeline */
+    .timeline-item {
+        display: flex;
+        margin-bottom: 0;
+    }
+    .timeline-title {
+        width: 24%;
+        padding: 2rem 2.5rem 2rem 0;
+        text-align: right;
+    }
+    .timeline-content {
+        border-left: 5px solid #f8f6f2;
+        width: 76%;
+        padding: 1.5rem 0 1.5rem 2.5rem;
+        position: relative;
+    }
+    .timeline-content::before {
+        display: block;
+        width: 2.25rem;
+        height: 2.25rem;
+        background: #d0bea2;
+        text-align: center;
+        padding: .1rem;
+        position: absolute;
+        top: 1.5rem;
+        left: -1.5rem;
+    /* Font Awesome */
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        color: #fff;
+        font-size: 1.25rem;
+    }
+    .icon-file::before{
+        content: '\f56e';
+    }
+    .icon-code::before{
+        content: '\f121';
+    }
+    .icon-chat::before{
+        content: '\f086';
+    }
+    .icon-hands::before{
+        content: '\f2b5';
+    }
+
+/* Form */
+    label {
+        display: inline-block;
+        margin: 0 1.5rem 0 0;
+    }
+    .select-box {
+        width: 40%;
+    }
+}
+
+@media (max-width: 640px) {
+/* Footer */
+    p.copyright {
+        font-size: 0.9rem;
+    }
+}
