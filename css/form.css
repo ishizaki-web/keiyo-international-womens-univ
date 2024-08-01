@@ -99,29 +99,29 @@ td {
 /*
 HEADER
 ================================================ */
-.title h1 {
-    /* padding-bottom: .2em; */
-   
+header .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+h1 {
+    margin-left: auto;
+    margin-right: auto;
     font-size: 4rem;
     font-family: 'Crimson Pro', serif;
     font-style: italic;
     font-weight: lighter;
     text-align: center;
-  }
-
-.title .rb {
-    padding-top: 10px;
-    font-size: 1.7rem;
-    text-align: center;
-  }
-
+}
 /*
 FORM.html
 ================================================ */
 .page-form {
     background-image: url('../images/request_bg.jpg'), linear-gradient(180deg, transparent 0%,transparent 50%, #c4c4c4 50%, #c4c4c4 100%);
-    background-position: right 210px, 0 0;
-    background-size: 50vw auto, contain;
+    background-position: right 100px, 0 0;
+    background-size: 70vw auto, contain;
     background-repeat: no-repeat;
 }
 .text-medium {
